@@ -1,0 +1,118 @@
+:root{
+  --primary: #1E3A8A;
+  --accent: #F59E0B;
+  --bg: #F9FAFB;
+  --text: #111827;
+  --card-radius: 10px;
+  --shadow: 0 6px 20px rgba(16,24,40,0.08);
+}
+
+body{
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.navbar-brand { 
+  color: var(--primary); 
+  font-family: "Montserrat"; 
+}
+
+.navbar .btn-outline-primary { 
+  border-color: rgba(30,58,138,0.12); 
+  color: var(--primary); 
+}
+
+.hero-section { 
+  background: linear-gradient(90deg, rgba(30,58,138,0.04), rgba(245,158,11,0.02)); 
+  padding-top: 40px; padding-bottom: 40px; }
+
+  .hero-left h1 
+  { font-family: "Montserrat"; 
+    color: var(--primary); }
+
+.search-card { 
+  border-radius: 12px; 
+  overflow: hidden; }
+
+.property-card { 
+  border-radius: 12px; 
+  overflow: hidden; 
+  box-shadow: var(--shadow); 
+  background: #fff; }
+
+  .property-card img { 
+    height: 180px; 
+    object-fit: cover; 
+  }
+
+.small-feature { 
+  display:flex; 
+  gap:12px; 
+  align-items:center; }
+
+.small-feature .icon { 
+  font-size: 28px; 
+  width:44px; 
+  height:44px; 
+  display:grid; 
+  place-items:center; 
+  background:#fff; 
+  border-radius:8px; 
+  box-shadow:var(--shadow); 
+}
+
+.avatar { 
+  width:48px; 
+  height:48px; 
+  border-radius:8px; 
+  background:#1e3a8a; 
+  color:#fff; 
+  display:grid; 
+  place-items:center; 
+  font-weight:700; 
+}
+
+footer { 
+  background: transparent; 
+}
+
+.card { 
+  border-radius: 12px; 
+}
+
+[data-reveal] { 
+  opacity: 0; 
+  transform: 
+  translateY(18px); 
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(.2,.9,.3,1); 
+  will-change: opacity, transform; 
+}
+
+[data-reveal].is-revealed { 
+  opacity: 1; 
+  transform: none; 
+}
+
+.reveal-right { 
+  transform: translateX(24px) translateY(0); 
+}
+.reveal-right.is-revealed { 
+  transform: none; 
+}
+
+.property-card .card-body { 
+  transition: transform 250ms ease, box-shadow 250ms ease; 
+}
+
+.property-card:hover .card-body { 
+  transform: translateY(-6px); 
+  box-shadow: 0 14px 30px rgba(16,24,40,0.12); 
+}
+
+@media (max-width: 991px){
+  .hero-right { margin-top: 20px; }
+  .property-card img { height: 160px; }
+}
