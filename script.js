@@ -1,6 +1,3 @@
-// script.js - handles property data, search/filter, navigation and reveal animations
-
-// ---------- Sample property data ----------
 const properties = [
   {
     id: 'p1',
@@ -64,7 +61,6 @@ const properties = [
   }
 ];
 
-// ---------- Utilities ----------
 function $q(sel, root=document) { return root.querySelector(sel); }
 function $qa(sel, root=document) { return Array.from(root.querySelectorAll(sel)); }
 
@@ -72,7 +68,6 @@ function formatPrice(n){
   return n.toLocaleString(undefined, { style:'currency', currency: 'NGN', maximumFractionDigits:0 });
 }
 
-// ---------- Render featured cards on home ----------
 function renderFeatured(){
   const container = $q('#featuredGrid');
   if(!container) return;
@@ -97,7 +92,6 @@ function renderFeatured(){
   });
 }
 
-// ---------- Render listings on properties page ----------
 function renderListings(list = properties){
   const grid = $q('#listingsGrid');
   if(!grid) return;
@@ -127,7 +121,6 @@ function renderListings(list = properties){
   const countEl = $q('#resultCount'); if(countEl) countEl.textContent = list.length;
 }
 
-// ---------- Property details page rendering ----------
 function renderPropertyDetails(id){
   const p = properties.find(x=>x.id===id);
   if(!p) return;
@@ -142,7 +135,6 @@ function renderPropertyDetails(id){
     ul.appendChild(li);
   });
 
-  // gallery: bootstrap carousel
   const gallery = $q('#gallery');
   gallery.innerHTML = `
     <div id="propCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
@@ -161,7 +153,6 @@ function renderPropertyDetails(id){
     </div>
   `;
 
-  // favorite button state
   const favBtn = $q('#favBtn');
   if(favBtn){
     const favs = JSON.parse(localStorage.getItem('bk_favs')||'[]');
@@ -179,7 +170,6 @@ function renderPropertyDetails(id){
   }
 }
 
-// ---------- Filter logic ----------
 function applyFilters(){
   const loc = $q('#filterLocation')?.value.trim().toLowerCase() || '';
   const type = $q('#filterType')?.value || '';
@@ -196,18 +186,14 @@ function applyFilters(){
   renderListings(filtered);
 }
 
-// ---------- Hero search: redirect to properties page with filters applied via localStorage ----------
 function heroSearchHandler(e){
   e.preventDefault();
   const loc = $q('#heroLocation')?.value.trim() || '';
   const type = $q('#heroType')?.value || '';
-  // store temp search in sessionStorage
   sessionStorage.setItem('bk_search', JSON.stringify({loc, type}));
-  // go to properties page
   window.location.href = 'properties.html';
 }
 
-// ---------- On properties page, if sessionStorage search exists, prefill filters ----------
 function preloadSearchOnProperties(){
   const s = sessionStorage.getItem('bk_search');
   if(!s) return;
@@ -220,7 +206,6 @@ function preloadSearchOnProperties(){
   } catch(e){}
 }
 
-// ---------- Save button behaviour on listing cards (favorites) ----------
 function attachSaveButtons(){
   $qa('.save-btn').forEach(btn=>{
     btn.onclick = ()=> {
@@ -240,7 +225,6 @@ function attachSaveButtons(){
   });
 }
 
-// ---------- Simple reveal-on-scroll using IntersectionObserver ----------
 function setupReveal(){
   const items = $qa('[data-reveal]');
   if(!('IntersectionObserver' in window)) {
@@ -258,43 +242,34 @@ function setupReveal(){
   items.forEach(i=> io.observe(i));
 }
 
-// ---------- Page bootstrapping ----------
 document.addEventListener('DOMContentLoaded', ()=>{
-  // set year in all pages
   $qa('#year,#year2,#year3,#year4').forEach(e=>{ if(e) e.textContent = new Date().getFullYear(); });
 
   renderFeatured();
   setupReveal();
 
-  // home page search
   const heroForm = $q('#heroSearchForm');
   if(heroForm){
     heroForm.addEventListener('submit', heroSearchHandler);
   }
 
-  // if properties page
   if($q('#listingsGrid')){
     renderListings(properties);
     preloadSearchOnProperties();
 
-    // attach filter button
     const applyBtn = $q('#applyFilters');
     if(applyBtn) applyBtn.addEventListener('click', applyFilters);
 
-    // attach delegated handler to update save buttons when DOM changes
     const obs = new MutationObserver(()=> attachSaveButtons());
     obs.observe($q('#listingsGrid'), {childList:true});
     attachSaveButtons();
   }
 
-  // if single property page
   if($q('#propertyWrapper')){
-    // get id from query param
     const params = new URLSearchParams(location.search);
     const id = params.get('id') || properties[0].id;
     renderPropertyDetails(id);
 
-    // simple inquiry form handler (just show alert)
     const form = $q('#inquiryForm');
     if(form) form.addEventListener('submit', (ev)=>{
       ev.preventDefault();
