@@ -49,7 +49,7 @@ const properties = [
   },
   {
     id: 'p4',
-    title: 'Beachside Land Plot',
+    title: 'Family House',
     type: 'House',
     price: 165000000,
     location: ' Mandela Estate Sars Road Port Harcourt ',
