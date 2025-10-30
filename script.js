@@ -6,61 +6,60 @@ const properties = [
     id: 'p1',
     title: 'Luxury Family House',
     type: 'House',
-    price: 550000,
-    location: 'Ikeja, Lagos',
+    price: 1000000000,
+    location: 'Asokoro, Abuja',
     beds: 4,
-    baths: 3,
+    baths: 4,
     size: '3200 sqft',
     images: [
-      'https://images.unsplash.com/photo-1560185127-6af35f6b6a36?q=80&w=1200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1599423300746-b62533397364?q=80&w=1200&auto=format&fit=crop'
+      'copy-4Bedroom Asokoro.jpg', '4Bedroom Asokoro pool.jpg', '4Bedroom Asokoro inhouse1.jpg', '4Bedroom Asokoro toilet.jpg', '4Bedroom Asokoro room.jpg', '4Bedroom Asokoro wardrope.jpg'
     ],
     description: 'Beautiful family house in a quiet neighborhood. Spacious rooms, modern kitchen, and large backyard.',
-    features: ['4 bedrooms', '3 bathrooms', '2 car garage', 'Garden', 'Near schools']
+    features: ['4 bedrooms', '4 bathrooms', 'Pool', 'Garden', 'Near schools']
   },
   {
     id: 'p2',
     title: 'Modern City Apartment',
     type: 'Apartment',
-    price: 320000,
-    location: 'Victoria Island, Lagos',
-    beds: 2,
-    baths: 2,
+    price: 135000000,
+    location: 'Wuye, Abuja',
+    beds: 3,
+    baths: 3,
     size: '1100 sqft',
     images: [
-      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1200&auto=format&fit=crop'
+      '3BedroomAp Wuye.jpg'
     ],
     description: 'Sleek apartment with city views and access to public transport and amenities.',
-    features: ['2 bedrooms', '2 bathrooms', 'Balcony', 'Gym access']
+    features: ['3 bedrooms', '3 bathrooms', 'Balcony', 'Gym access']
   },
   {
     id: 'p3',
-    title: 'Cozy Suburban Home',
+    title: 'Luxury Family House',
     type: 'House',
-    price: 260000,
-    location: 'Lekki Phase 1, Lagos',
-    beds: 3,
-    baths: 2,
+    price: 270000000,
+    location: 'Ajah, Lagos',
+    beds: 5,
+    baths: 5,
     size: '1800 sqft',
     images: [
-      'https://images.unsplash.com/photo-1505691723518-36a439b34d8b?q=80&w=1200&auto=format&fit=crop'
+      '5Bedroom Detached Ajah.jpg'
     ],
-    description: 'Comfortable suburban home ideal for growing families. Quiet street and nearby park.',
-    features: ['3 bedrooms', '2 bathrooms', 'Parking']
+    description: 'Comfortable luxury home ideal for growing families. Quiet street and nearby park.',
+    features: ['5 bedrooms', '5 bathrooms', 'Parking']
   },
   {
     id: 'p4',
     title: 'Beachside Land Plot',
-    type: 'Land',
-    price: 180000,
-    location: 'Badagry, Lagos',
-    beds: 0,
-    baths: 0,
+    type: 'House',
+    price: 165000000,
+    location: ' Mandela Estate Sars Road Port Harcourt ',
+    beds: 4,
+    baths: 4,
     size: '5000 sqm',
     images: [
-      'https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1200&auto=format&fit=crop'
+      '4Bedroom ph.jpg'
     ],
-    description: 'Large plot ideal for building a resort or holiday homes with ocean proximity.',
+    description: 'Comfortable luxury home ideal for growing families. Quiet street and nearby park.',
     features: ['Water access', 'Clear title']
   }
 ];
@@ -70,7 +69,7 @@ function $q(sel, root=document) { return root.querySelector(sel); }
 function $qa(sel, root=document) { return Array.from(root.querySelectorAll(sel)); }
 
 function formatPrice(n){
-  return n.toLocaleString(undefined, { style:'currency', currency: 'USD', maximumFractionDigits:0 });
+  return n.toLocaleString(undefined, { style:'currency', currency: 'NGN', maximumFractionDigits:0 });
 }
 
 // ---------- Render featured cards on home ----------
